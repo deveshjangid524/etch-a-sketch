@@ -1,42 +1,57 @@
-const btn=document.getElementById('btn');
-btn.addEventListener('click',function(){
-  const num=  prompt("Enter a number between 1 and 100");
-  const Pnum=parseInt(num);
-  if(!isNaN(Pnum) && Pnum> 0&& Pnum<=100){
-    createGrid(Pnum);
-  }
-  else {
-    alert('Please enter a valid Number greater than 0');
-  }
-});
+let color = "black";
+document.addEventListener('DOMContentLoaded',function(){
+  createBoard(32);
 
-function createGrid(sps){
-    
-    gridContainer.innerHTML='';
-    const gridItemSize= 960/ sps;
-    for(let i=0;i<sps *sps ;i++){
-        const gridItem=document.createElement('div');
-        gridItem.classList.add('grid-item');
-        gridItem.style.width = `${gridItemSize}px`;
-        gridItem.style.height = `${gridItemSize}px`;
-        gridContainer.appendChild(gridItem);
-    }
+  let selectBtn=document.getElementById("popup");
+  selectBtn.addEventListener('click',function(){
+    let newSize=getSize();
+    createBoard(newSize);
+  });
+  let blackBtn=document.querySelector("#Black");
+  blackBtn.addEventListener("click",function(){
+     color='black';
+  })
+  let randomBtn=document.querySelector("#Random");
+  randomBtn.addEventListener("click",function(){
+    color='#' + Math.floor(Math.random()*16777215).toString(16);
+  })
+
+  let resetBtn=document.querySelector("#Reset");
+  resetBtn.addEventListener("click",function(){
+    let divs=document.querySelectorAll(".grid-item");
+    divs.forEach((div) => div.style.backgroundColor='white');
+  })
+
+}
+)
+
+function createBoard(size){
+  let board=document.querySelector(".container");
+  board.innerHTML='';
+  for(let i=0;i<size*size;i++){
+      let newGrid=  document.createElement('div');
+      newGrid.classList.add('grid-item');
+      newGrid.style.width=`${500/size}px`;
+      newGrid.style.height=`${500/size}px`;
+      newGrid.addEventListener('mouseover',function(){
+        newGrid.style.backgroundColor=color;
+      })
+      board.appendChild(newGrid);
+  }
 }
 
-
-const gridContainer=document.querySelector('.container');
-
-
-
-
-for(let i=0;i< 800;i++){
-    const gridItem=document.createElement('div');
-    gridItem.classList.add('grid-item');
-    gridItem.addEventListener('mouseover',function(){
-        gridItem.style.backgroundColor='#ff6666';
-    });
-    gridItem.addEventListener('mouseout',function() {
-        gridItem.style.backgroundColor= 'antiqueWhite';
-    });
-    gridContainer.appendChild(gridItem);
+function getSize(){
+  let input=parseInt(prompt("Enter a number for the size"));
+  let message=document.getElementById("message");
+  if(input==""){
+    message.innerHTML="Please provide a number";
+  }
+  else if(input<0 || input>200){
+    message.innerHTML="Provide a number between 1 and 200";
+  }
+  else {
+    message.innerHTML="Now you play";
+    return input;
+  }
+  
 }
