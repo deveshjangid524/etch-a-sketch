@@ -53,17 +53,22 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: #f0f0f0;
+    background-color:rgb(166, 170, 155);
     margin: 0;
     padding: 20px;
 }
 .header{
     display: flex;
     flex-direction: row;
-    width: 400px;
+    width: 200px;
+    height: 40px;
     justify-content:space-around;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    background-color: bisque;
+    border:2px solid rgb(36, 26, 26);
+    border-radius: 6px;
+    
 }
 
 .footer{
@@ -82,7 +87,9 @@ body {
     flex-wrap: wrap;
     width: 500px;
     height: 500px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    border-style: dashed;
+    /* border-radius: 3%; */
     
 }
 
@@ -90,4 +97,23 @@ body {
 background-color: white;
 box-sizing: border-box;
 border-collapse: collapse;
+border-radius: 4px;
+}
+
+
+button:active {
+    transform: translateY(1px); 
+    box-shadow: none;
+}
+
+#message,#draw{
+ background-color: white;
+ font-size: x-large;
+ font-family: cursive;
+ border-radius: 6px;
+ margin-bottom: 10px;
+}
+
+h6{
+    font-size: larger;
 }

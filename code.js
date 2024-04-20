@@ -59,14 +59,19 @@ function createBoard(size){
 }
 
 function getSize(){
-  let input=parseInt(prompt("Enter a number for the size"));
+  let input=prompt("Enter a number for the size");
   let message=document.getElementById("message");
-  if(input==""){
+  
+  if(input==""||input==null){
     message.innerHTML="Please provide a number";
+    
   }
-  else if(input<0 || input>200){
+  else if(input<=0 || input>200){
     message.innerHTML="Provide a number between 1 and 200";
+  
   }
+  
+  
   else {
     message.innerHTML="Now you play";
     return input;
