@@ -1,7 +1,20 @@
-let color = "black";
+let color ='black';
+let click=false;
 document.addEventListener('DOMContentLoaded',function(){
   createBoard(32);
-
+  document.querySelector("body").addEventListener('click',function(e){
+    if(e.target.tagName!="BUTTON"){
+      click= !click;
+      let draw=document.querySelector("#draw");
+      if(click){
+        draw.innerHTML="Now You can Draw";
+      }
+      else{
+        draw.innerHTML="you're Not allowed to draw click anywhere";
+        
+      }
+    }
+  })
   let selectBtn=document.getElementById("popup");
   selectBtn.addEventListener('click',function(){
     let newSize=getSize();
@@ -9,11 +22,17 @@ document.addEventListener('DOMContentLoaded',function(){
   });
   let blackBtn=document.querySelector("#Black");
   blackBtn.addEventListener("click",function(){
-     color='black';
+    
+      color='black';
+
+    
   })
   let randomBtn=document.querySelector("#Random");
   randomBtn.addEventListener("click",function(){
-    color='#' + Math.floor(Math.random()*16777215).toString(16);
+    
+
+      color='random';
+    
   })
 
   let resetBtn=document.querySelector("#Reset");
@@ -33,9 +52,8 @@ function createBoard(size){
       newGrid.classList.add('grid-item');
       newGrid.style.width=`${500/size}px`;
       newGrid.style.height=`${500/size}px`;
-      newGrid.addEventListener('mouseover',function(){
-        newGrid.style.backgroundColor=color;
-      })
+
+      newGrid.addEventListener('mouseover',colorDiv);
       board.appendChild(newGrid);
   }
 }
@@ -54,4 +72,14 @@ function getSize(){
     return input;
   }
   
+}
+function colorDiv(){
+  if (click){
+    if(color=="random"){
+      this.style.backgroundColor='#' + Math.floor(Math.random() * 16777215).toString(16);
+    }
+    else {
+      this.style.backgroundColor='black';
+    }
+  }
 }
